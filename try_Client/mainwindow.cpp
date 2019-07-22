@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //you may explain what's the function of these two connect.
     connect(cl, SIGNAL(newMessageRead(const QString&)), this, SLOT(add_new_msg(const QString&)));
     connect(this, SIGNAL(newMessageSent(const QString &)), this, SLOT(add_new_msg(const QString &)));
+
+    setWindowTitle("ChatWindow");
 }
 
 //destroy
@@ -36,7 +38,7 @@ void MainWindow::on_send_button_clicked(){
 //to connect to the ip you want
 void MainWindow::on_actionConnect_To_Server_triggered(){
     cl->connectToServer("127.0.0.1", 6666);
-    emit newMessageSent("Successfully connnet to server.");//这里未实现条件显示这一句。
+    //emit newMessageSent("Successfully connnet to server.");//这里未实现条件显示这一句。
 }
 
 //show message on textbrowser

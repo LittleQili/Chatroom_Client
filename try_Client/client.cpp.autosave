@@ -5,6 +5,7 @@ chatClient::chatClient(WindowT w, QObject *parent) : QObject(parent)
     this->sock = new QTcpSocket(this);
     switch (w) {
     case CONFIRMIP:
+        connect(sock,SIGNAL(readyRead()),this,SLOT(ipwindow_readMsg());
         break;
     case LOGIN:
         break;
@@ -40,7 +41,6 @@ chatClient::~chatClient(){
 
 void chatClient::ipwindow_readMsg(){
     QString receivedMsg = QString::fromUtf8(sock->readAll());
-    QString msgToHandle = "server:" + receivedMsg;
-    emit newMessageRead(msgToHandle);
+    emit ipwindow_isconnect(receivedMsg);
 }
 

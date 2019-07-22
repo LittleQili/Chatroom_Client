@@ -16,11 +16,24 @@ Login::Login(QWidget *parent) :
     //choose IP
 
 }
+Login::Login(chatClient *xcl,QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::Login)
+{
+    ui->setupUi(this);
+    cl = xcl;
+
+    ui->User_password->setEchoMode(QLineEdit::Password);
+
+    //connect
+
+    //choose IP
+
+}
 
 Login::~Login()
 {
     delete ui;
-    if(cl != nullptr)delete cl;
 }
 
 void Login::on_Register_clicked()

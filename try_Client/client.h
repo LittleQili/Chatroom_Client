@@ -5,12 +5,16 @@
 #include <QtNetwork/QTcpSocket>
 #include <QThread>
 
+enum WindowT{
+    CONFIRMIP,LOGIN,REGISTER,MAINWINDOW,
+};
+
 class chatClient : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit chatClient(QObject *parent = nullptr);
+    explicit chatClient(WindowT w,QObject *parent = nullptr);
     ~chatClient();
 
 private:
@@ -18,8 +22,10 @@ private:
 
 signals:
     void newMessageRead(const QString&);
+    void ipwindow_isconnect(const QString&);
 public slots:
     void readMsg();
+    void ipwindow_readMsg();
 public:
     void connectToServer(QString ip, uint16_t port);
     void sendMessage(QString msg);

@@ -1,43 +1,82 @@
 #include "login.h"
 #include "ui_login.h"
 
-Login::Login(QWidget *parent) :
+Login::Login(QString x_IP, uint16_t x_port, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Login)
+    ui(new Ui::Login),con_IP(x_IP),con_port(x_port),isconneted(false)
 {
     ui->setupUi(this);
     cl = new chatClient(LOGIN,this);
 
     ui->User_password->setEchoMode(QLineEdit::Password);
+    setWindowTitle("Login");
 
     //connect
-
-    //choose IP
-
-}
-Login::Login(chatClient *xcl,QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Login)
-{
-    ui->setupUi(this);
-    cl = xcl;
-
-    ui->User_password->setEchoMode(QLineEdit::Password);
-
-    //connect
-
-    //choose IP
+    connect(ui->Cancel_pushbutton,SIGNAL(clicked()),this,SLOT(close()));
+    connect(cl,SIGNAL(login_info(const QString&)),this,SLOT(display_loginstate(const QString&)));
 
 }
 
 Login::~Login()
 {
     delete ui;
+    if(cl != nullptr)delete cl;
 }
 
 void Login::on_Register_clicked()
 {
-    Register r;
+    Register r(con_IP,con_port);
     r.show();
-
+    r.exec();
 }
+
+void Login::on_Login_pushbutton_clicked()
+{
+    if( ui->User_name->text().isEmpty() )
+    {
+        QMessageBox::warning(this, tr("Warning"), tr("User name cannot be empty"));
+        return;
+    }else if(ui->User_password->text().isEmpty()){
+        QMessageBox::warning(this, tr("Warning"), tr("Password cannot be empty"));
+        return;
+    }
+
+    name = ui->User_name->text();
+    QString passw_hash = QCryptographicHash::hash( ui->User_password->text().toUtf8(),
+                                                      QCryptographicHash::Sha3_256 );
+
+    QString tosend;
+    //connet to server + Encode
+    if(!isconneted){
+        cl->connectToServer(con_IP, con_port);
+        isconneted = true;
+        tosend = "LI" + name +" "+ passw_hash;
+    }else tosend = name +" "+ passw_hash;
+
+    cl->sendMessage(tosend);
+    return;
+}
+
+void Login::display_loginstate(const QString&s){
+    if(s == "Success"){
+        QMessageBox::about
+                (this,"Message from server","Hi "+name+QString("! \nYou have successfully logined! "));
+       accept();
+    }else if(s == "WrongPassword"){
+
+    }else if(s == "Notexist"){
+
+    }
+}
+
+QString Login::getName(){
+    return name;
+}
+
+/*
+void Login::Run_mainwindow(){
+    MainWindow w(con_IP,con_port,name);
+    w.show();
+    a->exec();
+}
+*/

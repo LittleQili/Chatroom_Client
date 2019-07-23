@@ -11,25 +11,18 @@ Register::Register(QString x_IP, uint16_t x_port, QWidget *parent) :
     ui->password->setEchoMode(QLineEdit::Password);
     ui->password_confirm->setEchoMode(QLineEdit::Password);
 
-    setWindowTitle("Register");
-}
-
-Register::Register(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Register)
-{
-    ui->setupUi(this);
-    cl = new chatClient(REGISTER,this);
-
-    ui->password->setEchoMode(QLineEdit::Password);
-    ui->password_confirm->setEchoMode(QLineEdit::Password);
+    connect(cl,SIGNAL(regwindow_issuccess(const QString&)),this,SLOT(display_issuccess(const QString&)));
+    connect(ui->Return,SIGNAL(clicked()),this,SLOT(close()));
 
     setWindowTitle("Register");
 }
+
 Register::~Register()
 {
     delete ui;
-    if(cl != nullptr)delete cl;
+    if(cl != nullptr){
+        delete cl;
+    }
 }
 
 void Register::on_Confirm_clicked()
@@ -58,17 +51,18 @@ void Register::on_Confirm_clicked()
         QMessageBox::warning(this, tr("Warning"), tr("Entered passwords differ"));
         return;
     }
-    //Decode
+    //Encode
     QString tosend = "RG" + user_name +" "+ passwcon_hash;
     //connect
     cl->connectToServer(con_IP, con_port);
     cl->sendMessage(tosend);
-    QMessageBox::about(this,"Welcome","You have successfully Registered!  ");
-    //本步骤应该直接返回login界面
     return;
 }
 
-void Register::on_Return_clicked()
-{
-
+void Register::display_issuccess(const QString& s){
+    if(s == "Success"){
+        QMessageBox::about(this,"Message from server","You have successfully registered! ");
+        cl->disconnect();
+        emit ui->Return->clicked();
+    }
 }

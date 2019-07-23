@@ -1,9 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(QString x_IP, uint16_t x_port,QString xname,QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),name(xname)
 {
     ui->setupUi(this);
     cl = new chatClient(MAINWINDOW,this);
@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //you may explain what's the function of these two connect.
     connect(cl, SIGNAL(newMessageRead(const QString&)), this, SLOT(add_new_msg(const QString&)));
     connect(this, SIGNAL(newMessageSent(const QString &)), this, SLOT(add_new_msg(const QString &)));
+
+    cl->connectToServer(x_IP,x_port);
 
     setWindowTitle("ChatWindow");
 }

@@ -16,15 +16,12 @@ class Register : public QDialog
     Q_OBJECT
 
 public:
-    explicit Register(QWidget *parent = 0);
     explicit Register(QString x_IP,uint16_t x_port,QWidget *parent = 0);
     ~Register();
 
 private slots:
     void on_Confirm_clicked();
-
-    void on_Return_clicked();
-
+    void display_issuccess(const QString&);
 private:
     Ui::Register *ui;
     chatClient *cl;

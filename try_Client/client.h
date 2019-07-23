@@ -23,9 +23,13 @@ private:
 signals:
     void newMessageRead(const QString&);
     void ipwindow_isconnect(const QString&);
+    void regwindow_issuccess(const QString&);
+    void login_info(const QString&);
 public slots:
     void readMsg();
     void ipwindow_readMsg();
+    void regwindow_readMsg();
+    void login_readMsg();
 public:
     void connectToServer(QString ip, uint16_t port);
     void sendMessage(QString msg);

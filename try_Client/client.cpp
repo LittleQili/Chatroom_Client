@@ -8,8 +8,10 @@ chatClient::chatClient(WindowT w, QObject *parent) : QObject(parent)
         connect(sock,SIGNAL(readyRead()),this,SLOT(ipwindow_readMsg()));
         break;
     case LOGIN:
+        connect(sock,SIGNAL(readyRead()),this,SLOT(login_readMsg()));
         break;
     case REGISTER:
+        connect(sock,SIGNAL(readyRead()),this,SLOT(regwindow_readMsg()));
         break;
     case MAINWINDOW:
         connect(sock, SIGNAL(readyRead()), this, SLOT(readMsg()));
@@ -44,3 +46,12 @@ void chatClient::ipwindow_readMsg(){
     emit ipwindow_isconnect(receivedMsg);
 }
 
+void chatClient::regwindow_readMsg(){
+    QString receivedMsg = QString::fromUtf8(sock->readAll());
+    emit regwindow_issuccess(receivedMsg);
+}
+
+void chatClient::login_readMsg(){
+    QString receivedMsg = QString::fromUtf8(sock->readAll());
+    emit login_info(receivedMsg);
+}

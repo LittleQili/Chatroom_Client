@@ -1,5 +1,4 @@
 #include "login.h"
-#include "register.h"
 #include "ui_login.h"
 
 Login::Login(QWidget *parent) :
@@ -7,7 +6,7 @@ Login::Login(QWidget *parent) :
     ui(new Ui::Login)
 {
     ui->setupUi(this);
-    cl = new chatClient(this);
+    cl = new chatClient(LOGIN,this);
 
     ui->User_password->setEchoMode(QLineEdit::Password);
 

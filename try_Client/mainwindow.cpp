@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    cl = new chatClient(this);
+    cl = new chatClient(MAINWINDOW,this);
 
     //you may explain what's the function of these two connect.
     connect(cl, SIGNAL(newMessageRead(const QString&)), this, SLOT(add_new_msg(const QString&)));

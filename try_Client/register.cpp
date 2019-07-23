@@ -6,7 +6,7 @@ Register::Register(QString x_IP, uint16_t x_port, QWidget *parent) :
     ui(new Ui::Register),con_IP(x_IP),con_port(x_port)
 {
     ui->setupUi(this);
-    cl = new chatClient(Register,this);
+    cl = new chatClient(REGISTER,this);
 
     ui->password->setEchoMode(QLineEdit::Password);
     ui->password_confirm->setEchoMode(QLineEdit::Password);
@@ -14,6 +14,18 @@ Register::Register(QString x_IP, uint16_t x_port, QWidget *parent) :
     setWindowTitle("Register");
 }
 
+Register::Register(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::Register)
+{
+    ui->setupUi(this);
+    cl = new chatClient(REGISTER,this);
+
+    ui->password->setEchoMode(QLineEdit::Password);
+    ui->password_confirm->setEchoMode(QLineEdit::Password);
+
+    setWindowTitle("Register");
+}
 Register::~Register()
 {
     delete ui;

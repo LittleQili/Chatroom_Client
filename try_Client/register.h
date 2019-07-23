@@ -17,7 +17,7 @@ class Register : public QDialog
 
 public:
     explicit Register(QWidget *parent = 0);
-    explicit Register(chatClient *xcl,QWidget *parent = 0);
+    explicit Register(QString x_IP,uint16_t x_port,QWidget *parent = 0);
     ~Register();
 
 private slots:
@@ -28,6 +28,8 @@ private slots:
 private:
     Ui::Register *ui;
     chatClient *cl;
+    QString con_IP;
+    uint16_t con_port;
 };
 
 #endif // REGISTER_H

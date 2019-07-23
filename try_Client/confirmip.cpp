@@ -15,12 +15,7 @@ ConfirmIP::ConfirmIP(QWidget *parent) :
 ConfirmIP::~ConfirmIP()
 {
     delete ui;
-    //以下语句看情况。
     if(cl != nullptr)delete cl;
-}
-
-chatClient* ConfirmIP::get_chatClient(){
-    return cl;
 }
 
 void ConfirmIP::on_OK_clicked()
@@ -30,11 +25,18 @@ void ConfirmIP::on_OK_clicked()
         return;
     }
 
-    QString tmpip = ui->IPaddr->text();
-    uint16_t tmpport =uint16_t(ui->Port->text());
-    cl->connectToServer(tmpip,tmpport);
+    con_IP = ui->IPaddr->text();
+    if(ui->Port->text() == "6666")con_port = 6666;
+    cl->connectToServer(con_IP,con_port);
+    cl->sendMessage("IP");
 }
 
 void ConfirmIP::display_isconnected(const QString&s){
+    if(s == (QString)"Success"){
+        QMessageBox::about(this,"Message from server","You have successfully connect the server you want! ");
+    }
+}
+
+void ConfirmIP::RunClientProcess(){
 
 }

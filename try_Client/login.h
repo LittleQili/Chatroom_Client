@@ -1,7 +1,6 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 
-#include <QDialog>
 #include "register.h"
 
 namespace Ui {

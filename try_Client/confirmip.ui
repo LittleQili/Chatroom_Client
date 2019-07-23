@@ -90,6 +90,9 @@
    <property name="text">
     <string>6666</string>
    </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Normal</enum>
+   </property>
   </widget>
  </widget>
  <resources/>

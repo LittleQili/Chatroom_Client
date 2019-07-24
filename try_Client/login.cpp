@@ -62,10 +62,17 @@ void Login::display_loginstate(const QString&s){
         QMessageBox::about
                 (this,"Message from server","Hi "+name+QString("! \nYou have successfully logined! "));
        accept();
-    }else if(s == "WrongPassword"){
-
+    }else if(s == "Logined"){
+        QMessageBox::warning
+                (this,tr("Warning"),tr("This user has already logined!"));
+        return;
+    } else if(s == "WrongPassword"){
+        QMessageBox::warning
+                (this,tr("Warning"),tr("Wrong Password!"));
+        return;
     }else if(s == "Notexist"){
-
+        QMessageBox::warning(this,tr("Warning"),tr("This user hasn't registered! "));
+        return;
     }
 }
 

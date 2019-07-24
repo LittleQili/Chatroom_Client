@@ -26,7 +26,7 @@ signals:
     void regwindow_issuccess(const QString&);
     void login_info(const QString&);
 public slots:
-    void readMsg();
+    void mw_readMsg();
     void ipwindow_readMsg();
     void regwindow_readMsg();
     void login_readMsg();

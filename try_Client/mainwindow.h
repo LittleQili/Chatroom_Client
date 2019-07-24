@@ -26,7 +26,6 @@ signals:
 
 private slots:
     void on_send_button_clicked();
-    void on_actionConnect_To_Server_triggered();
     void add_new_msg(const QString&);
 };
 

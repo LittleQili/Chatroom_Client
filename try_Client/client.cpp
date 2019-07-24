@@ -14,7 +14,7 @@ chatClient::chatClient(WindowT w, QObject *parent) : QObject(parent)
         connect(sock,SIGNAL(readyRead()),this,SLOT(regwindow_readMsg()));
         break;
     case MAINWINDOW:
-        connect(sock, SIGNAL(readyRead()), this, SLOT(readMsg()));
+        connect(sock, SIGNAL(readyRead()), this, SLOT(mw_readMsg()));
         break;
     default:
         break;
@@ -31,10 +31,9 @@ void chatClient::sendMessage(QString msg){
     return;
 }
 
-void chatClient::readMsg(){
+void chatClient::mw_readMsg(){
     QString receivedMsg = QString::fromUtf8(sock->readAll());
-    QString msgToHandle = "server:" + receivedMsg;
-    emit newMessageRead(msgToHandle);
+    emit newMessageRead(receivedMsg);
 }
 
 chatClient::~chatClient(){

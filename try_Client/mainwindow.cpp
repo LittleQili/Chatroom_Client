@@ -7,6 +7,7 @@ MainWindow::MainWindow(QString x_IP, uint16_t x_port,QString xname,QWidget *pare
 {
     ui->setupUi(this);
     cl = new chatClient(MAINWINDOW,this);
+    setWindowTitle("ChatWindow");
 
     //you may explain what's the function of these two connect.
     connect(cl, SIGNAL(newMessageRead(const QString&)), this, SLOT(add_new_msg(const QString&)));
@@ -14,7 +15,7 @@ MainWindow::MainWindow(QString x_IP, uint16_t x_port,QString xname,QWidget *pare
 
     cl->connectToServer(x_IP,x_port);
 
-    setWindowTitle("ChatWindow");
+    cl->sendMessage(QString("MW") + name);
 }
 
 //destroy
@@ -34,13 +35,6 @@ void MainWindow::on_send_button_clicked(){
     ui->input_text->setFocus();
     QString msgTmp = "you:" + toSend;
     emit newMessageSent(msgTmp); //what's this?
-}
-
-//connect to server, ip and port is hard coded, you may add a input box
-//to connect to the ip you want
-void MainWindow::on_actionConnect_To_Server_triggered(){
-    cl->connectToServer("127.0.0.1", 6666);
-    //emit newMessageSent("Successfully connnet to server.");//这里未实现条件显示这一句。
 }
 
 //show message on textbrowser

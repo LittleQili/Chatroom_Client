@@ -81,6 +81,7 @@
     </property>
     <addaction name="actionLog_out"/>
     <addaction name="actionChange_your_name"/>
+    <addaction name="actionChange_your_password"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>
@@ -106,6 +107,11 @@
   <action name="actionChange_your_name">
    <property name="text">
     <string>Change your name</string>
+   </property>
+  </action>
+  <action name="actionChange_your_password">
+   <property name="text">
+    <string>Change your password</string>
    </property>
   </action>
  </widget>

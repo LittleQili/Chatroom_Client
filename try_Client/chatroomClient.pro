@@ -31,7 +31,8 @@ SOURCES += \
     login.cpp \
     register.cpp \
     confirmip.cpp \
-    changename.cpp
+    changename.cpp \
+    changepassword.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,14 +40,16 @@ HEADERS += \
     login.h \
     register.h \
     confirmip.h \
-    changename.h
+    changename.h \
+    changepassword.h
 
 FORMS += \
         mainwindow.ui \
     login.ui \
     register.ui \
     confirmip.ui \
-    changename.ui
+    changename.ui \
+    changepassword.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

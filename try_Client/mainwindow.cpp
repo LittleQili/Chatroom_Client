@@ -37,8 +37,6 @@ void MainWindow::on_send_button_clicked(){
     cl->sendMessage("CA"+toSend);
     ui->input_text->clear();
     ui->input_text->setFocus();
-    //QString msgTmp = "you:" + toSend;
-    //emit newMessageSent(msgTmp); //what's this?
 }
 
 //show message on textbrowser
@@ -69,4 +67,11 @@ void MainWindow::on_actionChange_your_name_triggered()
 void MainWindow::name_changed(const QString&s){
     name = s;
     cl->sendMessage("CN"+s);
+}
+
+void MainWindow::on_actionChange_your_password_triggered()
+{
+    ChangePassword chp(con_IP,con_port,name);
+    chp.show();
+    chp.exec();
 }

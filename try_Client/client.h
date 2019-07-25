@@ -6,7 +6,7 @@
 #include <QThread>
 
 enum WindowT{
-    CONFIRMIP,LOGIN,REGISTER,MAINWINDOW,CHANGENAME,
+    CONFIRMIP,LOGIN,REGISTER,MAINWINDOW,CHANGENAME,CHANGEPSWD,
 };
 
 class chatClient : public QObject
@@ -26,12 +26,14 @@ signals:
     void regwindow_issuccess(const QString&);
     void login_info(const QString&);
     void ch_name_info(const QString&);
+    void ch_pswd_info(const QString&);
 public slots:
     void mw_readMsg();
     void ipwindow_readMsg();
     void regwindow_readMsg();
     void login_readMsg();
     void ch_name_readMsg();
+    void ch_pswd_readMsg();
 public:
     void connectToServer(QString ip, uint16_t port);
     void sendMessage(QString msg);

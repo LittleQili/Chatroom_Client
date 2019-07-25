@@ -11,7 +11,7 @@ ChangeName::ChangeName(QString x_IP, uint16_t x_port, QString xname, MainWindow*
     ui->Password->setEchoMode(QLineEdit::Password);
     setWindowTitle(name + " : Change your name");
 
-    connect(this,SIGNAL(nameChanged(const QString&)),mw,SLOT(name_changed(const QString&)));
+    //connect(this,SIGNAL(nameChanged(const QString&)),mw,SLOT(name_changed(const QString&)));
     connect(ui->Cancel,SIGNAL(clicked()),this,SLOT(quit_and_close()));
     connect(cl,SIGNAL(ch_name_info(const QString&)),this,SLOT(display_issuccess(const QString&)));
 
@@ -46,6 +46,10 @@ void ChangeName::on_Ok_clicked()
         QMessageBox::warning(this, tr("Warning"), tr("Invalid name: it shouldn't contain space! "));
         ui->NewName->clear();
         ui->NewName->setFocus();
+        return;
+    }
+    if(newname == name){
+        QMessageBox::warning(this, tr("Warning"), tr("The name you entered is the same as before.\nIf you don't want to change it, just click \"Cancel\"."));
         return;
     }
     //password

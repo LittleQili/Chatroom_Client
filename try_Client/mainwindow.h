@@ -7,11 +7,13 @@
 #include <QScrollBar>
 #include "client.h"
 #include "changename.h"
+#include "changepassword.h"
 
 namespace Ui {
 class MainWindow;
 }
 class ChangeName;
+class ChangePassword;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -36,6 +38,7 @@ private slots:
     void on_actionLog_out_triggered();
     void add_new_msg(const QString&);
     void on_actionChange_your_name_triggered();
+    void on_actionChange_your_password_triggered();
 };
 
 #endif // MAINWINDOW_H

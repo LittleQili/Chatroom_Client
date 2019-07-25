@@ -16,6 +16,9 @@ chatClient::chatClient(WindowT w, QObject *parent) : QObject(parent)
     case MAINWINDOW:
         connect(sock, SIGNAL(readyRead()), this, SLOT(mw_readMsg()));
         break;
+    case CHANGENAME:
+        connect(sock, SIGNAL(readyRead()), this, SLOT(ch_name_readMsg()));
+        break;
     default:
         break;
     }
@@ -54,3 +57,9 @@ void chatClient::login_readMsg(){
     QString receivedMsg = QString::fromUtf8(sock->readAll());
     emit login_info(receivedMsg);
 }
+
+void chatClient::ch_name_readMsg(){
+    QString receivedMsg = QString::fromUtf8(sock->readAll());
+    emit ch_name_info(receivedMsg);
+}
+

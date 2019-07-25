@@ -20,6 +20,8 @@ private slots:
     void on_OK_clicked();
     void display_isconnected(const QString&);
 
+    void on_Quiry_clicked();
+
 private:
     Ui::ConfirmIP *ui;
     chatClient *cl;
@@ -28,6 +30,7 @@ private:
     QApplication *a;
 
     bool isfirstconnect;
+    bool isQuiry;
 
     QString name;
 private:

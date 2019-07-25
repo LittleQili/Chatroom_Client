@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>411</width>
-    <height>325</height>
+    <height>371</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Please enter your user name</string>
+    <string>Please enter your name</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="user_name">
@@ -34,8 +34,8 @@
     <rect>
      <x>50</x>
      <y>70</y>
-     <width>291</width>
-     <height>21</height>
+     <width>301</width>
+     <height>31</height>
     </rect>
    </property>
   </widget>
@@ -43,7 +43,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>100</y>
+     <y>110</y>
      <width>291</width>
      <height>31</height>
     </rect>
@@ -56,9 +56,9 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>140</y>
-     <width>291</width>
-     <height>20</height>
+     <y>150</y>
+     <width>301</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="echoMode">
@@ -69,7 +69,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>170</y>
+     <y>190</y>
      <width>291</width>
      <height>31</height>
     </rect>
@@ -82,9 +82,9 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>210</y>
-     <width>291</width>
-     <height>20</height>
+     <y>230</y>
+     <width>301</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="echoMode">
@@ -95,7 +95,7 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>250</y>
+     <y>290</y>
      <width>101</width>
      <height>31</height>
     </rect>
@@ -108,7 +108,7 @@
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>250</y>
+     <y>290</y>
      <width>111</width>
      <height>31</height>
     </rect>

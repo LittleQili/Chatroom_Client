@@ -8,14 +8,15 @@ int main(int argc, char *argv[])
 
     ConfirmIP con(&a);
     con.show();
-    if(con.exec() == QDialog :: Accepted){
-        MainWindow w(con.getIP(),con.getPort(),con.getName());
-        w.show();
-        return a.exec();
+    if(con.exec() == QDialog::Accepted){
+        Login l(con.getIP(),con.getPort());
+        l.show();
+        con.close();
+        if(l.exec() == QDialog::Accepted){
+            MainWindow m(l.getIP(),l.getPort(),l.getName());
+            m.show();
+            return a.exec();
+        }
     }
-    //Register r;
-    //r.show();
-    //MainWindow w;
-    //w.show();
     return 0;
 }

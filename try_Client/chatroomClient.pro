@@ -30,20 +30,23 @@ SOURCES += \
     client.cpp \
     login.cpp \
     register.cpp \
-    confirmip.cpp
+    confirmip.cpp \
+    changename.cpp
 
 HEADERS += \
         mainwindow.h \
     client.h \
     login.h \
     register.h \
-    confirmip.h
+    confirmip.h \
+    changename.h
 
 FORMS += \
         mainwindow.ui \
     login.ui \
     register.ui \
-    confirmip.ui
+    confirmip.ui \
+    changename.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

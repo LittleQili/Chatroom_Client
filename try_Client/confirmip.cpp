@@ -3,7 +3,7 @@
 
 ConfirmIP::ConfirmIP(QApplication* xa,QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ConfirmIP),a(xa),isfirstconnect(true)
+    ui(new Ui::ConfirmIP),a(xa),isfirstconnect(true),isQuiry(false)
 {
     ui->setupUi(this);
     cl = new chatClient(CONFIRMIP,this);
@@ -29,10 +29,10 @@ void ConfirmIP::on_OK_clicked()
 
     if(isfirstconnect){
         con_IP = ui->IPaddr->text();
-        //if(ui->Port->text() == "6666")con_port = 6666;
         con_port = ui->Port->text().toInt();
         cl->connectToServer(con_IP,con_port);
-        cl->sendMessage("IP");
+        if(isQuiry) cl->sendMessage("IPQ");
+        else cl->sendMessage("IP");
         isfirstconnect = false;
     }else{
         QString tmp_IP = ui->IPaddr->text();
@@ -44,16 +44,23 @@ void ConfirmIP::on_OK_clicked()
             con_IP = tmp_IP;
             con_port = tmp_port;
             cl->connectToServer(con_IP,con_port);
-            cl->sendMessage("IP");
-        }
+            if(isQuiry)cl->sendMessage("IPQ");
+            else cl->sendMessage("IP");
+        }else if(isQuiry)cl->sendMessage("Q");
+              else accept();
     }
 }
 
 void ConfirmIP::display_isconnected(const QString&s){
-    if(s == (QString)"Success"){
+    if(isQuiry){
+        if(s == (QString)"None"){
+            QMessageBox::about(this,"Message from server","No one is in this chatroom right now.");
+        }else QMessageBox::about(this,"Message from server","These users are in this chatroom: \n" + s);
+    }else if(s == (QString)"Success"){
         QMessageBox::about(this,"Message from server","You have successfully connect the server you want!  ");
+        accept();
     }
-    RunClientProcess();
+    isQuiry = false;
 }
 
 void ConfirmIP::RunClientProcess(){
@@ -79,3 +86,9 @@ QString ConfirmIP::getName(){
     return name;
 }
 
+
+void ConfirmIP::on_Quiry_clicked()
+{
+    isQuiry = true;
+    emit ui->OK->clicked();
+}

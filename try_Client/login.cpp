@@ -12,7 +12,7 @@ Login::Login(QString x_IP, uint16_t x_port, QWidget *parent) :
     setWindowTitle("Login");
 
     //connect
-    connect(ui->Cancel_pushbutton,SIGNAL(clicked()),this,SLOT(close()));
+    connect(ui->Cancel_pushbutton,SIGNAL(clicked()),this,SLOT(quit_and_close()));
     connect(cl,SIGNAL(login_info(const QString&)),this,SLOT(display_loginstate(const QString&)));
 
 }
@@ -65,19 +65,41 @@ void Login::display_loginstate(const QString&s){
     }else if(s == "Logined"){
         QMessageBox::warning
                 (this,tr("Warning"),tr("This user has already logined!"));
+        ui->User_password->clear();
+        ui->User_password->setFocus();
+        ui->User_name->clear();
+        ui->User_name->setFocus();
         return;
     } else if(s == "WrongPassword"){
         QMessageBox::warning
                 (this,tr("Warning"),tr("Wrong Password!"));
+        ui->User_password->clear();
+        ui->User_password->setFocus();
         return;
     }else if(s == "Notexist"){
         QMessageBox::warning(this,tr("Warning"),tr("This user hasn't registered! "));
+        ui->User_name->clear();
+        ui->User_name->setFocus();
+        ui->User_password->clear();
+        ui->User_password->setFocus();
         return;
     }
 }
 
 QString Login::getName(){
     return name;
+}
+
+void Login::quit_and_close(){
+    cl->disconnect();
+    close();
+}
+QString Login::getIP(){
+    return con_IP;
+}
+
+uint16_t Login::getPort(){
+    return con_port;
 }
 
 /*

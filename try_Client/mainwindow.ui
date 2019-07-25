@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>513</width>
-    <height>522</height>
+    <height>541</height>
    </rect>
   </property>
   <property name="mouseTracking">
@@ -29,18 +29,30 @@
     <property name="verticalScrollBarPolicy">
      <enum>Qt::ScrollBarAsNeeded</enum>
     </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustIgnored</enum>
+    </property>
    </widget>
    <widget class="QPushButton" name="send_button">
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>400</y>
+      <y>410</y>
       <width>121</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>SEND</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+Return</string>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QTextEdit" name="input_text">
@@ -63,13 +75,14 @@
      <height>17</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuServer">
+   <widget class="QMenu" name="menuMenu">
     <property name="title">
-     <string>Server</string>
+     <string>Menu</string>
     </property>
-    <addaction name="actionConnect_To_Server"/>
+    <addaction name="actionLog_out"/>
+    <addaction name="actionChange_your_name"/>
    </widget>
-   <addaction name="menuServer"/>
+   <addaction name="menuMenu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -82,7 +95,17 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionConnect_To_Server">
    <property name="text">
-    <string>Connect To Server</string>
+    <string>Log out</string>
+   </property>
+  </action>
+  <action name="actionLog_out">
+   <property name="text">
+    <string>Log out</string>
+   </property>
+  </action>
+  <action name="actionChange_your_name">
+   <property name="text">
+    <string>Change your name</string>
    </property>
   </action>
  </widget>

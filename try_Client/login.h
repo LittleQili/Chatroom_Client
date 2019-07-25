@@ -20,6 +20,7 @@ private slots:
     void on_Register_clicked();
     void display_loginstate(const QString&);
     void on_Login_pushbutton_clicked();
+    void quit_and_close();
 
 private:
     Ui::Login *ui;
@@ -34,6 +35,8 @@ private:
     //void Run_mainwindow();
 public:
     QString getName();
+    QString getIP();
+    uint16_t getPort();
 };
 
 #endif // LOGIN_H

@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QCryptographicHash>
 #include <QDebug>
+#include <string>
 #include "client.h"
 
 namespace Ui {
@@ -22,11 +23,14 @@ public:
 private slots:
     void on_Confirm_clicked();
     void display_issuccess(const QString&);
+    void quit_and_close();
 private:
     Ui::Register *ui;
     chatClient *cl;
     QString con_IP;
     uint16_t con_port;
+
+    bool isconnected;
 };
 
 #endif // REGISTER_H

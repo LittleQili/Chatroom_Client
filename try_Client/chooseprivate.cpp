@@ -11,6 +11,8 @@ ChoosePrivate::ChoosePrivate(MainWindow *xmw, QWidget *parent) :
     connect(ui->Public,SIGNAL(clicked()),mw,SLOT(set_public()));
     connect(ui->Private,SIGNAL(clicked()),this,SLOT(confirm_private()));
     connect(ui->Public,SIGNAL(clicked()),this,SLOT(confirm_public()));
+
+    setWindowTitle("Chatroom State");
 }
 
 ChoosePrivate::~ChoosePrivate()

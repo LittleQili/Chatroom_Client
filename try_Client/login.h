@@ -31,8 +31,6 @@ private:
     QString name;
 
     bool isconneted;
-
-    //void Run_mainwindow();
 public:
     QString getName();
     QString getIP();

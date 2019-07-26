@@ -12,6 +12,8 @@ AdminChoose::AdminChoose(QString xtype,QString x_IP, uint16_t x_port, QString xn
 
     connect(ui->Cancel,SIGNAL(clicked(bool)),this,SLOT(close()));
     cl->sendMessage((QString)"AC"+type+name);
+
+    if(type == "login")setWindowTitle("Choose next administrator");
 }
 
 AdminChoose::~AdminChoose()
@@ -45,6 +47,8 @@ void AdminChoose::on_OK_clicked()
     if(type == "logout"){
             if(read.contains(" ")){
                 QMessageBox::warning(this, tr("Warning"), tr("You should enter only one person !"));
+            }else if(read == name){
+                QMessageBox::warning(this, tr("Warning"), tr("You shouldn't enter yourself !"));
             }else{
                 cl->sendMessage(read);
                 next_name = read;

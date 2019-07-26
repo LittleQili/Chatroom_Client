@@ -32,7 +32,9 @@ SOURCES += \
     register.cpp \
     confirmip.cpp \
     changename.cpp \
-    changepassword.cpp
+    changepassword.cpp \
+    adminchoose.cpp \
+    chooseprivate.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,7 +43,9 @@ HEADERS += \
     register.h \
     confirmip.h \
     changename.h \
-    changepassword.h
+    changepassword.h \
+    adminchoose.h \
+    chooseprivate.h
 
 FORMS += \
         mainwindow.ui \
@@ -49,7 +53,9 @@ FORMS += \
     register.ui \
     confirmip.ui \
     changename.ui \
-    changepassword.ui
+    changepassword.ui \
+    adminchoose.ui \
+    chooseprivate.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

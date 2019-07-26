@@ -22,6 +22,9 @@ chatClient::chatClient(WindowT w, QObject *parent) : QObject(parent)
     case CHANGEPSWD:
         connect(sock, SIGNAL(readyRead()), this, SLOT(ch_pswd_readMsg()));
         break;
+    case ADMINCHOSE:
+        connect(sock, SIGNAL(readyRead()), this, SLOT(am_chos_readMsg()));
+        break;
     default:
         break;
     }
@@ -69,4 +72,9 @@ void chatClient::ch_name_readMsg(){
 void chatClient::ch_pswd_readMsg(){
     QString receivedMsg = QString::fromUtf8(sock->readAll());
     emit ch_pswd_info(receivedMsg);
+}
+
+void chatClient::am_chos_readMsg(){
+    QString receivedMsg = QString::fromUtf8(sock->readAll());
+    emit am_chos_info(receivedMsg);
 }

@@ -20,7 +20,11 @@ Login::Login(QString x_IP, uint16_t x_port, QWidget *parent) :
 Login::~Login()
 {
     delete ui;
-    if(cl != nullptr)delete cl;
+
+    if(cl != nullptr){
+        cl->disconnect();
+        delete cl;
+    }
 }
 
 void Login::on_Register_clicked()
@@ -102,10 +106,3 @@ uint16_t Login::getPort(){
     return con_port;
 }
 
-/*
-void Login::Run_mainwindow(){
-    MainWindow w(con_IP,con_port,name);
-    w.show();
-    a->exec();
-}
-*/

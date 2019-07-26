@@ -20,6 +20,7 @@ ChangeName::ChangeName(QString x_IP, uint16_t x_port, QString xname, MainWindow*
 ChangeName::~ChangeName()
 {
     delete ui;
+    if(isconnected)cl->disconnect();
     if(cl != nullptr)delete cl;
 }
 

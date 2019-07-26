@@ -20,6 +20,7 @@ Register::Register(QString x_IP, uint16_t x_port, QWidget *parent) :
 Register::~Register()
 {
     delete ui;
+    if(isconnected)cl->disconnect();
     if(cl != nullptr){
         delete cl;
     }

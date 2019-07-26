@@ -77,13 +77,20 @@
    </property>
    <widget class="QMenu" name="menuMenu">
     <property name="title">
-     <string>Menu</string>
+     <string>Menu_Common</string>
     </property>
     <addaction name="actionLog_out"/>
     <addaction name="actionChange_your_name"/>
     <addaction name="actionChange_your_password"/>
    </widget>
+   <widget class="QMenu" name="menuMenu_Administrator">
+    <property name="title">
+     <string>Menu_Administrator</string>
+    </property>
+    <addaction name="actionChange_the_status_of_the_Chatroom"/>
+   </widget>
    <addaction name="menuMenu"/>
+   <addaction name="menuMenu_Administrator"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -112,6 +119,11 @@
   <action name="actionChange_your_password">
    <property name="text">
     <string>Change your password</string>
+   </property>
+  </action>
+  <action name="actionChange_the_status_of_the_Chatroom">
+   <property name="text">
+    <string>Change the status of the Chatroom</string>
    </property>
   </action>
  </widget>

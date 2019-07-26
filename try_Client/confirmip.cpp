@@ -17,6 +17,7 @@ ConfirmIP::ConfirmIP(QApplication* xa,QWidget *parent) :
 ConfirmIP::~ConfirmIP()
 {
     delete ui;
+    cl->disconnect();
     if(cl != nullptr)delete cl;
 }
 
@@ -55,11 +56,14 @@ void ConfirmIP::display_isconnected(const QString&s){
     if(isQuiry){
         if(s == (QString)"None"){
             QMessageBox::about(this,"Message from server","No one is in this chatroom right now.");
+        }else if(s == "Private"){
+            QMessageBox::warning(this, tr("Warning"), tr("Sorry, You don't have the permission to quiry this. "));
         }else QMessageBox::about(this,"Message from server","These users are in this chatroom: \n" + s);
     }else if(s == (QString)"Success"){
         QMessageBox::about(this,"Message from server","You have successfully connect the server you want!  ");
         accept();
     }
+
     isQuiry = false;
 }
 

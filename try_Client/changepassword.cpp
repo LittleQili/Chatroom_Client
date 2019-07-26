@@ -20,6 +20,8 @@ ChangePassword::ChangePassword(QString x_IP, uint16_t x_port, QString xname,QWid
 ChangePassword::~ChangePassword()
 {
     delete ui;
+    if(isconnected)cl->disconnect();
+    if(cl != nullptr)delete cl;
 }
 
 void ChangePassword::quit_and_close(){
